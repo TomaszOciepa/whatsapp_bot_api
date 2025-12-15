@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+}
+
+/* LAYOUT */
+.admin-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.admin-subtitle {
+  color: #666;
+  margin-bottom: 40px;
+}
+
+/* STATS GRID */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 140px;
+}
+
+.stat-title {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.stat-number {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-small {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* FOOTER */
+.admin-footer {
+  margin-top: 60px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #999;
+}
+
+/* WYKRES */
+
+.chart-wrapper {
+  position: relative;
+  height: 360px;
+}
+
+.chart-card {
+  margin-top: 40px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.chart-card h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.chart-card canvas {
+  width: 100% !important;
+  max-height: 280px;
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Panel admina – Toffiecrisp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/admin/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="admin-wrapper">
+
+        <h1>📊 Panel admina – Toffiecrisp</h1>
+        <div class="admin-subtitle">
+            Podstawowe statystyki działania bota
+        </div>
+
+        <!-- STATYSTYKI -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-title">👥 Rozmowy</div>
+                <div class="stat-number"><%= @conversations_count %></div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-title">💬 Wiadomości</div>
+                <div class="stat-number"><%= @messages_count %></div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-title">🔥 Aktywne dziś</div>
+                <div class="stat-number"><%= @active_today_count %></div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-title">🕒 Ostatnia wiadomość</div>
+
+                <% if @last_message %>
+                <div class="stat-small">
+                    <strong>Rozmowa:</strong><br>
+                    <%= @last_message.conversation.chat_id %>
+                </div>
+                <div class="stat-small">
+                    <strong>Data:</strong><br>
+                    <%= l(@last_message.created_at, format: :short) %>
+                </div>
+                <% else %>
+                <div class="stat-small">brak danych</div>
+                <% end %>
+            </div>
+        </div>
+
+        <!-- WYKRES -->
+        <div class="chart-card">
+            <h2>📈 Wiadomości – ostatnie 7 dni</h2>
+
+            <div class="chart-wrapper">
+                <canvas id="messagesChart" data-labels="<%= @messages_by_day.keys.map { |d| d.strftime('%a') }.to_json %>" data-values="<%= @messages_by_day.values.to_json %>">
+                </canvas>
+            </div>
+
+        </div>
+
+        <div class="admin-footer">
+            © <%= Time.current.year %> Toffiecrisp · panel administracyjny
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.getElementById("messagesChart");
+            if (!canvas) return;
+
+            const labels = JSON.parse(canvas.dataset.labels);
+            const values = JSON.parse(canvas.dataset.values);
+
+            new Chart(canvas.getContext("2d"), {
+                data: {
+                    labels: labels,
+                    datasets: [{
+                            type: "bar",
+                            label: "Wiadomości",
+                            data: values,
+                            backgroundColor: "#ff8c2b",
+                            borderRadius: 6,
+                            barThickness: 18, // 👈 WĄSKIE SŁUPKI
+                            maxBarThickness: 20
+                        },
+                        {
+                            type: "line",
+                            label: "Trend",
+                            data: values,
+                            borderColor: "#ff5a00",
+                            backgroundColor: "transparent",
+                            tension: 0.35, // 👈 ŁADNE ŁUKI
+                            pointRadius: 4,
+                            pointBackgroundColor: "#ff5a00",
+                            pointBorderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, // 👈 WAŻNE
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

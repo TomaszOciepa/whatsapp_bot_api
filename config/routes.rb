@@ -7,4 +7,9 @@ Rails.application.routes.draw do
   namespace :api do
     post "/messages", to: "messages#create"
   end
+
+  namespace :admin do
+    root to: "dashboard#index"
+  end
+  
 end

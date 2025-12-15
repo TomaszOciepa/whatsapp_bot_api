@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const messages = document.querySelectorAll(".chat-bubble");
-  const maxLoops = 3; // ile razy ma się powtórzyć
-  const messageDelay = 900; // odstęp między wiadomościami
-  const loopPause = 2000; // przerwa po całym czacie
+  const maxLoops = 1;
+  const messageDelay = 1200;
+  const loopPause = 2000;
 
   let loopCount = 0;
 
