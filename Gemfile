@@ -40,6 +40,9 @@ gem "thruster", require: false
 ########--------------------------------------------->>>>>>> 
 
 gem "rack-cors"
+gem "ruby-openai"
+gem "dotenv-rails", groups: [:development, :test]
+
 
 ########--------------------------------------------->>>>>>> 
 
