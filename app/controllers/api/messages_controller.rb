@@ -1,5 +1,7 @@
 module Api
   class MessagesController < ApplicationController
+    skip_before_action :verify_authenticity_token
+    
     def create
       Api::MessageProcessor.call(
         from: params[:from],
