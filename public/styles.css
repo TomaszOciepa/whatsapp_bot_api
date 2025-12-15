@@ -249,3 +249,30 @@ body {
     display: none;
   }
 }
+
+/* CORNER LOGO */
+.tc-corner-logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 4; /* nad overlayem */
+}
+
+.tc-corner-logo img {
+  height: 168px; /* 2x większe */
+  width: auto;
+  opacity: 0.95;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4));
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .tc-corner-logo {
+    top: 14px;
+    left: 14px;
+  }
+
+  .tc-corner-logo img {
+    height: 32px;
+  }
+}
