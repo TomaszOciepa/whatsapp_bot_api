@@ -49,7 +49,7 @@ body {
 /* CHAT – LEWA STRONA */
 .tc-chat-bubbles {
   position: absolute;
-  left: 4%;
+  left: 15%;
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;

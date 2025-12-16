@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const messages = document.querySelectorAll(".chat-bubble");
   const maxLoops = 1;
-  const messageDelay = 1200;
+  const messageDelay = 200;
   const loopPause = 2000;
 
   let loopCount = 0;
