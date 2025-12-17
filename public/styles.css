@@ -1,21 +1,21 @@
-/* RESET */
+/* ================= RESET ================= */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: #fff;
   color: #222;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 .tc-hero {
   position: relative;
   min-height: 100vh;
-  background: url("/images/bckground.png") center right / cover no-repeat;
-  overflow: hidden;
+  background: url("/images/bckground.png") center / cover no-repeat;
 }
 
 /* OVERLAY */
@@ -24,93 +24,185 @@ body {
   inset: 0;
   background: linear-gradient(
     to right,
-    rgba(255, 170, 60, 0.9) 0%,
-    rgba(255, 120, 30, 0.85) 45%,
-    rgba(255, 120, 30, 0.35) 100%
+    rgba(255,170,60,.95),
+    rgba(255,120,30,.85)
   );
   z-index: 1;
 }
 
-/* CORNER LOGO */
+/* ================= CORNER LOGO ================= */
 .tc-corner-logo {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 4;
+  top: 16px;
+  left: 16px;
+  z-index: 3;
 }
 
 .tc-corner-logo img {
-  height: 168px;
-  width: auto;
-  opacity: 0.95;
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4));
+  height: 42px;
 }
 
-/* CHAT – LEWA STRONA */
-.tc-chat-bubbles {
-  position: absolute;
-  left: 15%;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 3;
-  width: 360px;
+/* ================= GRID ================= */
+.tc-hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  padding: 96px 20px 48px;
+}
+
+/* ================= ORDER – MOBILE ================= */
+/* MOBILE: HERO -> RIGHT -> CHAT (CHAT NA DOLE) */
+
+.tc-center {
+  order: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.tc-right {
+  order: 2;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  pointer-events: none;
+  align-items: center;
+}
+
+.tc-left {
+  order: 3;
+  display: flex;
+  justify-content: center;
+}
+
+/* ================= CHAT ================= */
+.tc-chat-bubbles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 360px;
 }
 
 .chat-bubble {
-  position: relative;
-  max-width: 85%;
   padding: 12px 16px;
-  font-size: 1.05rem;
-  line-height: 1.35;
   border-radius: 18px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
-  opacity: 0;
-  transform: translateY(10px);
+  font-size: 0.95rem;
+  max-width: 85%;
 }
 
 .chat-bubble.user {
-  align-self: flex-end;
   background: #ffffff;
-  border-top-right-radius: 6px;
+  align-self: flex-end;
 }
 
 .chat-bubble.bot {
-  align-self: flex-start;
   background: #dcf8c6;
-  border-top-left-radius: 6px;
+  align-self: flex-start;
 }
 
-/* PRAWA STREFA */
-.tc-right-zone {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 38%;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
+/* ================= HERO CONTENT ================= */
+.tc-hero-content {
+  text-align: center;
+  max-width: 420px;
+  color: #ffffff;
 }
 
-/* QR */
+.tc-profile {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,.85);
+  margin-bottom: 16px;
+}
+
+.tc-logo {
+  max-width: 220px;
+  margin-bottom: 20px;
+}
+
+.tc-lead {
+  font-size: 1.15rem;
+  margin-bottom: 28px;
+}
+
+.tc-cta {
+  display: inline-block;
+  padding: 16px 32px;
+  background: #ff5a00;
+  color: #ffffff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 12px 28px rgba(0,0,0,.35);
+}
+
+.tc-socials {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  font-size: 1.6rem;
+}
+
+/* ================= RIGHT SECTION ================= */
+/* BUBBLES ZAWSZE NAD QR */
+.tc-bubbles {
+  order: 1;
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  min-height: 220px;
+  margin-bottom: 32px;
+}
+
 .tc-qr-zone {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-60%, -50%);
-  z-index: 3;
-  pointer-events: auto;
+  order: 2;
 }
 
+/* ================= INFO BUBBLES ================= */
+.tc-bubble {
+  position: absolute;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 10px 25px rgba(0,0,0,.15);
+  animation: float 8s ease-in-out infinite;
+}
+
+.tc-bubble.green { background: #dcf8c6; }
+.tc-bubble.white { background: #ffffff; }
+
+/* NIEŁAD KONTROLOWANY */
+.b1  { top: 10%; left: 5%;  transform: rotate(-6deg); }
+.b2  { top: 0%;  right: 0%; transform: rotate(5deg); }
+.b3  { top: 35%; left: 0%;  transform: rotate(3deg); }
+.b4  { top: 25%; right: 10%; transform: rotate(-4deg); }
+.b5  { top: 60%; left: 15%; transform: rotate(6deg); }
+.b6  { top: 55%; right: 5%;  transform: rotate(-5deg); }
+.b7  { top: 80%; left: 0%;  transform: rotate(4deg); }
+.b8  { top: 75%; right: 15%; transform: rotate(-6deg); }
+.b9  { top: 15%; left: 30%; transform: rotate(2deg); }
+.b10 { top: 45%; left: 35%; transform: rotate(-3deg); }
+
+@keyframes float {
+  50% {
+    transform: translateY(-8px) rotate(var(--r, 0deg));
+  }
+}
+
+/* ================= QR ================= */
 .tc-qr-card {
   background: #ffffff;
-  padding: 22px 24px;
-  border-radius: 26px;
+  padding: 20px;
+  border-radius: 24px;
   text-align: center;
-  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 18px 38px rgba(0,0,0,.35);
+}
+
+.tc-qr-card img {
+  width: 180px;
+  border-radius: 12px;
 }
 
 .tc-qr-title {
@@ -118,170 +210,65 @@ body {
   margin-bottom: 12px;
 }
 
-.tc-qr-card img {
-  width: 190px;
-  height: 190px;
-  border-radius: 14px;
-}
-
 .tc-qr-hint {
   margin-top: 8px;
-  font-size: 0.9rem;
-  opacity: 0.75;
+  font-size: 0.85rem;
+  opacity: 0.7;
 }
 
-/* INFO BUBBLES */
-.tc-bubbles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
+/* ================= DESKTOP ================= */
+@media (min-width: 1024px) {
 
-.tc-bubble {
-  position: absolute;
-  padding: 14px 26px;
-  border-radius: 999px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  animation: float 8s ease-in-out infinite;
-  white-space: nowrap;
-}
+  .tc-hero-grid {
+    grid-template-columns: 1.2fr 1fr 1.2fr;
+    align-items: center;
+    padding: 0 5vw;
+  }
 
-.tc-bubble.green {
-  background: #dcf8c6;
-}
+  /* RESET KOLEJNOŚCI */
+  .tc-left,
+  .tc-center,
+  .tc-right {
+    order: unset;
+  }
 
-.tc-bubble.white {
-  background: rgba(255, 255, 255, 0.95);
-}
+  .tc-left { justify-content: flex-end; }
+  .tc-right { align-items: flex-start; }
 
-/* POZYCJE – SKORYGOWANE (QR SAFE) */
-.b1 {
-  top: 6%;
-  left: 10%;
-}
-.b2 {
-  top: 14%;
-  right: 8%;
-}
+  .tc-hero-content { max-width: 520px; }
 
-.b3 {
-  top: 26%;
-  left: 6%;
-}
-.b4 {
-  top: 34%;
-  right: 6%;
-}
+  .tc-corner-logo img { height: 120px; }
 
-/* ⬇️ ZMIENIONE */
-.b5 {
-  bottom: 20%;
-  right: 4%;
-} /* Krótko & miło – niżej i bardziej w prawo */
-.b9 {
-  top: 18%;
-  left: 22%;
-} /* Pozytywny – wyżej i dalej od QR */
-
-.b6 {
-  bottom: 26%;
-  right: 8%;
-}
-.b7 {
-  bottom: 18%;
-  left: 6%;
-}
-.b8 {
-  bottom: 10%;
-  right: 12%;
-}
-.b10 {
-  top: 52%;
-  right: 18%;
-}
-
-@keyframes float {
-  50% {
-    transform: translateY(-10px);
+  .tc-qr-zone {
+    position: sticky;
+    top: 120px;
   }
 }
 
-/* HERO CONTENT */
-.tc-hero-content {
-  position: relative;
-  z-index: 3;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 80px 20px;
-  text-align: center;
-  color: #ffffff;
-}
-
-/* PROFILE */
-.tc-profile {
-  width: 110px;
-  height: 110px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 14px;
-  border: 4px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-}
-
-/* LOGO */
-.tc-logo {
-  max-width: 300px;
-  margin-bottom: 18px;
-}
-
-.tc-lead {
-  font-size: 1.25rem;
-  margin-bottom: 28px;
-}
-
-/* CTA */
-.tc-cta {
-  display: inline-block;
-  padding: 16px 36px;
-  background: #ff5a00;
-  color: #ffffff;
-  border-radius: 999px;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
-}
-
-/* SOCIALS */
-.tc-socials {
-  margin-top: 28px;
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  font-size: 1.8rem;
-}
-
-/* FOOTER */
-.tc-footer {
-  text-align: center;
-  padding: 36px 20px;
-  font-size: 0.9rem;
-  opacity: 0.6;
-}
-
-/* MOBILE */
-@media (max-width: 900px) {
-  .tc-chat-bubbles,
-  .tc-right-zone {
-    display: none;
-  }
-
-  .tc-corner-logo img {
-    height: 32px;
-  }
+/* ================= VERY LARGE SCREENS ================= */
+@media (min-width: 1440px) and (min-height: 800px) {
 
   .tc-hero {
-    background-position: center;
+    display: flex;
+    align-items: center;
   }
+
+  .tc-hero-grid {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+  .tc-hero-grid {
+    transform: translateY(40px);
+  }
+}
+
+/* ================= FOOTER ================= */
+.tc-footer {
+  text-align: center;
+  padding: 32px;
+  font-size: 0.85rem;
+  opacity: 0.6;
 }
